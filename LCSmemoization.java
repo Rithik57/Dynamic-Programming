@@ -20,4 +20,19 @@ public class solution{
         dp[n][m] = result;
         return result;
     }
+    
+    //top down
+    public static int LCSDP(String first,String second,int n,int m){
+        int[][] dp = new int[n+1][m+1];
+        for(int i=1;i<n+1;i++){ // n by i
+            for(int j=1;j<m+1;j++){ // m by j
+                if(first.charAt(i-1)==second.charAt(j-1)){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
 }
